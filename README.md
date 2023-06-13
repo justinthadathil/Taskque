@@ -1,5 +1,7 @@
 # Taskque
 
+Taskque is a task management application developed using Angular framework. The application allows users to add tasks, mark tasks as completed, and filter tasks based on their completion status.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.8.
 
 ## Development server
