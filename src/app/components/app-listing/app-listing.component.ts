@@ -41,6 +41,8 @@ export class AppListingComponent implements OnInit {
     this.taskListing.map((elm) => {
       if(elm.taskID === task.taskID){
         elm.status = getStatus
+
+        this.taskService.getTaskList(this.taskListing);
       }
     });
   }
