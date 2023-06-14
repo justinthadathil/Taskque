@@ -5,7 +5,7 @@
   <div class="marTop">
     <app-app-create-task></app-app-create-task>
     <div class="row justCont">
-      <div class="col-12 col-md-10">
+      <div class="col-12 col-md-10" *ngIf="taskListing.length !== 0; else noTask">
         <table class="table">
           <thead>
             <tr>
@@ -16,14 +16,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            <tr *ngFor="let task of taskListing">
+              <td>{{task.taskName}}</td>
+              <td>{{task.description}}</td>
+              <td>{{task.status ? 'Completed' : 'Incomplete'}}</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <ng-template #noTask>
+        <div class="col-12 col-md-10">
+          <p>No task added in the task list. please create a task</p>
+        </div>
+      </ng-template>
     </div>
   </div>
 
