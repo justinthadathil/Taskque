@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { TaskManagementService } from '../../service/task-management.service';
 import { TaskDetails } from 'src/app/task-details';
 
@@ -9,8 +9,10 @@ import { TaskDetails } from 'src/app/task-details';
 })
 export class AppFilterComponent implements OnInit{
 
-  filterOptions: string[];
+  filterOptions: {value: string, check: Boolean}[];
   showFilter: Boolean
+
+  sendID: string = 'All'
 
   constructor(private taskService: TaskManagementService){
 
@@ -27,18 +29,24 @@ export class AppFilterComponent implements OnInit{
     let all = data.length;
     let comp = data.filter((task) => task.status).length;
     let unComp = data.filter((task) => !task.status).length;
-    let newFilterCount = [`All (${all})`, `Completed (${comp})`, `Incomplete (${unComp})`]
+
+    let newFilterCount = [{
+      value: `All (${all})`,
+      check: this.sendID === 'All' ? true : false
+    },{
+      value: `Completed (${comp})`,
+      check: this.sendID === 'Completed' ? true : false
+    },{
+      value: `Incomplete (${unComp})`,
+      check: this.sendID === 'Incomplete' ? true : false
+    }]
     this.filterOptions = newFilterCount;
   }
 
   getCheckValue(event: Event){
     let getID = (<HTMLInputElement>event.target).id;
-    let sendID = getID.includes('All') ? 'All' : (getID.includes('Completed') ? 'Completed' : 'Incomplete');
-    this.taskService.sendTaskStatus(sendID);
-  }
-
-  checkAll(val: string){
-    return val.includes('All') ? true : false;
+    this.sendID = getID.includes('All') ? 'All' : (getID.includes('Completed') ? 'Completed' : 'Incomplete');
+    this.taskService.sendTaskStatus(this.sendID);
   }
 
 }
