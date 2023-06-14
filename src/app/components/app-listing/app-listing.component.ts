@@ -10,33 +10,30 @@ import { TaskDetails } from 'src/app/task-details';
 export class AppListingComponent implements OnInit {
 
   taskListing: TaskDetails[] = [];
+  statusFilter: boolean
+  showAllList:boolean = true;
 
   constructor(private taskService: TaskManagementService){
 
   }
 
   ngOnInit(): void {
-    this.taskListing.push({
-      taskID: 'Justin',
-      taskName: 'Build Joel',
-      description: 'nexcc',
-      status: false
-    },
-    {
-      taskID: 'Joel',
-      taskName: 'Build Justin',
-      description: 'nexcc',
-      status: false
-    },
-    {
-      taskID: 'Gloria',
-      taskName: 'Build Gloria',
-      description: 'nexcc',
-      status: false
-    })
+
+
     this.taskService.getUserTask.subscribe((data)=> {
       this.taskListing.push(data)
-      console.log(this.taskListing)
+      this.taskService.getTaskList(this.taskListing);
+    });
+
+
+
+    this.taskService.taskStatus.subscribe((status)=> {
+      if(status === 'All'){
+        this.showAllList = true;
+      }else{
+        this.showAllList = false;
+        this.statusFilter = status === 'Completed' ? true : false
+      }
     });
   }
 
@@ -46,12 +43,14 @@ export class AppListingComponent implements OnInit {
       if(elm.taskID === task.taskID){
         elm.status = getStatus
       }
-    })
+    });
+
   }
 
   deleteTask(task: TaskDetails){
     let getIndex = this.taskListing.findIndex(x => x.taskID === task.taskID);
     this.taskListing.splice(getIndex, 1);
+    this.taskService.getTaskList(this.taskListing);
   }
 
 

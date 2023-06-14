@@ -1,1 +1,15 @@
-<p>app-filter works!</p>
+<div class="row justCont marBottom" *ngIf="showFilter">
+  <div class="col-12 col-md-10">
+    <div class="card cent">
+      <div class="card-body disFlex">
+        <p class="card-title adv">Filter on status</p>
+        <div class="form-check marRig" *ngFor="let val of filterOptions">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" [checked]="val === 'All'" [id]="val" (change)="getCheckValue($event)">
+          <label class="form-check-label" for="all">
+            {{ val }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

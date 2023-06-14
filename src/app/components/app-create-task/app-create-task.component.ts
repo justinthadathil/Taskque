@@ -40,7 +40,7 @@ export class AppCreateTaskComponent implements OnInit {
       description: formValue.description,
       status: formValue.status
     }
-    this.taskService.userTask(storeTask)
+    this.taskService.userTask(storeTask);
     this.toastr.success(`${formValue.taskName} task created successfully`)
     this.resetForm();
   }
