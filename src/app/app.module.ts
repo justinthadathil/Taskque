@@ -11,13 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppWelcomeComponent } from './components/app-welcome/app-welcome.component';
 import { AppListingComponent } from './components/app-listing/app-listing.component';
 import { AppCreateTaskComponent } from './components/app-create-task/app-create-task.component';
+import { AppFilterComponent } from './components/app-filter/app-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppWelcomeComponent,
     AppListingComponent,
-    AppCreateTaskComponent
+    AppCreateTaskComponent,
+    AppFilterComponent
   ],
   imports: [
     BrowserModule,

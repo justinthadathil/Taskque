@@ -35,6 +35,7 @@ export class AppCreateTaskComponent implements OnInit {
     let formValue = this.createTaskForm.value;
     let storeTask: TaskDetails
     storeTask = {
+      taskID: this.generateID(10),
       taskName: formValue.taskName,
       description: formValue.description,
       status: formValue.status
@@ -48,6 +49,18 @@ export class AppCreateTaskComponent implements OnInit {
     this.createTaskForm.reset();
     this.isSubmitted = false;
     this.getCreateTaskForm();
+  }
+
+  generateID(length: number) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
   }
 
   getCreateTaskForm(){
