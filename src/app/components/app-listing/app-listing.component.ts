@@ -20,6 +20,7 @@ export class AppListingComponent implements OnInit {
   ngOnInit(): void {
     //get data from create task component
     this.taskService.getUserTask.subscribe((data)=> {
+      //latest task first
       this.taskListing.unshift(data)
       this.taskService.getTaskList(this.taskListing);
     });
