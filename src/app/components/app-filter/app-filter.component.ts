@@ -7,6 +7,7 @@ import { TaskManagementService } from '../../service/task-management.service';
   styleUrls: ['./app-filter.component.scss']
 })
 export class AppFilterComponent implements OnInit{
+
   filterOptions: string[] = ['All', 'Completed', 'Incomplete']
   showFilter: Boolean
 

@@ -18,15 +18,13 @@ export class AppListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
+    //get data from create task component
     this.taskService.getUserTask.subscribe((data)=> {
       this.taskListing.push(data)
       this.taskService.getTaskList(this.taskListing);
     });
 
-
-
+    //get status from create filter component
     this.taskService.taskStatus.subscribe((status)=> {
       if(status === 'All'){
         this.showAllList = true;
@@ -44,7 +42,6 @@ export class AppListingComponent implements OnInit {
         elm.status = getStatus
       }
     });
-
   }
 
   deleteTask(task: TaskDetails){
@@ -52,6 +49,5 @@ export class AppListingComponent implements OnInit {
     this.taskListing.splice(getIndex, 1);
     this.taskService.getTaskList(this.taskListing);
   }
-
 
 }

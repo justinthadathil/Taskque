@@ -71,6 +71,4 @@ export class AppCreateTaskComponent implements OnInit {
     });
   }
 
-
-
 }
