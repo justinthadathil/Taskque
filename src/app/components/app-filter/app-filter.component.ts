@@ -37,4 +37,8 @@ export class AppFilterComponent implements OnInit{
     this.taskService.sendTaskStatus(sendID);
   }
 
+  checkAll(val: string){
+    return val.includes('All') ? true : false;
+  }
+
 }
