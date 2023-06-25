@@ -1,6 +1,6 @@
 
 <div class="row justCont marBottom">
-  <div class="col-12 col-md-10">
+  <div class="col-11 col-md-10">
     <div class="card cent">
       <div class="card-body">
         <p class="card-title adv">Add Task</p>
@@ -9,12 +9,16 @@
             <div class="col-12 col-md-4 form-group">
               <label for="taskNameInput">Task Name</label>
               <input type="text" id="taskNameInput" class="form-control" formControlName="taskName" placeholder="Enter taskName">
-              <small *ngIf="createTaskForm.controls['taskName'].hasError('required') && isSubmitted" class="form-text text-muted">Task Name is required</small>
-              <small *ngIf="createTaskForm.controls['taskName'].hasError('maxlength')" class="form-text text-muted">Task name should not be more than 50 characters.</small>
+              <small *ngIf="createTaskForm.controls['taskName'].hasError('required') && isSubmitted" class="form-text text-muted error">Task Name is required</small>
+              <small *ngIf="createTaskForm.controls['taskName'].hasError('maxlength')" class="form-text text-muted error">Task name should not be more than 25 characters.</small>
             </div>
-            <div class="col-12 col-md-4 marTopMob25">
+            <div class="col-12 col-md-4 marTopMob15">
               <label for="taskDescriptionInput">Task Description</label>
               <textarea id='taskDescriptionInput' class="form-control" formControlName="description"  rows="1"></textarea>
+              <small *ngIf="returnNumber >= 0" class="form-text text-muted blue">
+                Max length 50 letters. left {{returnNumber}}
+              </small>
+              <small *ngIf="createTaskForm.controls['description'].hasError('maxlength')" class="form-text text-muted error">Task name should not be more than 50 characters.</small>
             </div>
             <div class="col-12 col-md-4">
               <button type="button" class="btn btn-primary marTop25" (click)="submitValue()">Add Task</button>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskManagementService } from '../../service/task-management.service';
 import { TaskDetails } from 'src/app/task-details';
 

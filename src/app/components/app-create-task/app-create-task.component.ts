@@ -13,6 +13,7 @@ export class AppCreateTaskComponent implements OnInit {
 
   createTaskForm: FormGroup
   isSubmitted: Boolean = false;
+  returnNumber: number = 50
 
   constructor(
     public formBuilder: FormBuilder,
@@ -24,6 +25,14 @@ export class AppCreateTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCreateTaskForm();
+    this.onChangeDesc();
+  }
+
+  onChangeDesc(){
+    this.createTaskForm.get('description')?.valueChanges.subscribe((data: string) => {
+      let initalNum = data === null ? 0 : data.length
+      this.returnNumber = 50 - initalNum
+    })
   }
 
   submitValue(){
@@ -31,7 +40,6 @@ export class AppCreateTaskComponent implements OnInit {
       this.isSubmitted = true;
       return;
     }
-
     let formValue = this.createTaskForm.value;
     let storeTask: TaskDetails
     storeTask = {
@@ -48,7 +56,7 @@ export class AppCreateTaskComponent implements OnInit {
   resetForm(){
     this.createTaskForm.reset();
     this.isSubmitted = false;
-    this.getCreateTaskForm();
+    //this.getCreateTaskForm();
   }
 
   generateID(length: number) {
